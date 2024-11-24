@@ -4,7 +4,9 @@
   "description": "Server-side code for my minesweeper app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "c8 mocha -p -j 2 test/index.test.js --exit",
+    "system-test": "NAME=Cloud c8 mocha -p -j 2 test/system.test.js --timeout=180000"
   },
   "repository": {
     "type": "git",
