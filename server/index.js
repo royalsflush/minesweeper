@@ -1,6 +1,6 @@
 import express from 'express';
+import Knex from 'knex';
 
-const Knex = require('knex');
 const app = express();
 
 app.get('/', (req, res) => {

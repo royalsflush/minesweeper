@@ -8,6 +8,7 @@
     "test": "c8 mocha -p -j 2 test/index.test.js --exit",
     "system-test": "NAME=Cloud c8 mocha -p -j 2 test/system.test.js --timeout=180000"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/royalsflush/minesweeper.git"
