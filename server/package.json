@@ -1,0 +1,26 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "Server-side code for my minesweeper app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/royalsflush/minesweeper.git"
+  },
+  "keywords": [
+    "Minesweeper",
+    "leaderboard"
+  ],
+  "author": "royalsflush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royalsflush/minesweeper/issues"
+  },
+  "homepage": "https://github.com/royalsflush/minesweeper#readme",
+  "dependencies": {
+    "knex": "^3.0.0"
+  }
+}
