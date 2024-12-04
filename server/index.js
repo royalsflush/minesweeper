@@ -40,7 +40,7 @@ const GetScoresForDifficulty = (req, res) => {
     const {difficulty} = req.body;
 
     if (!difficulty || (difficulty == 'easy')) {
-        res.status(400).send('Invalid difficulty.').end();
+        res.status(500).send('Invalid difficulty.').end();
     }
 
     res.status(200).send();
