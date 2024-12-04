@@ -3,18 +3,7 @@ import Knex from 'knex';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  const name = process.env.NAME || 'World';
-  res.send(`Hello ${name}!`);
-});
 
-const port = parseInt(process.env.PORT) || 8080;
-app.listen(port, () => {
-  console.log(`helloworld: listening on port ${port}`);
-});
-
-export default app;
-/*
 // createUnixSocketPool initializes a Unix socket connection pool for
 // a Cloud SQL instance of Postgres.
 const createUnixSocketPool = async config => {
@@ -81,18 +70,17 @@ const AddNewScore = (req, res) => {
     res.status(200).send(`Score added successfully: ${row}`);
 }
 
-functions.http('leaderboard', (req, res) => {
-    switch (req.method) {
-        case 'GET':
-            GetScoresForDifficulty(req, res);
-            break;
-        case 'POST':
-            AddNewScore(req, res);
-            break;
-        default:
-            res.status(405).send({error: 'Something blew up!'});
-            break;
-    }
+app.get('/leaderboard', (req, res) => {
+    GetScoresForDifficulty(req, res);
 });
-*/
 
+app.post('/leaderboard', (req, res) => {
+    AddNewScore(req, res);
+});
+
+const port = parseInt(process.env.PORT) || 8080;
+app.listen(port, () => {
+  console.log(`helloworld: listening on port ${port}`);
+});
+
+export default app;

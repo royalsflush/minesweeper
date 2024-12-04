@@ -8,15 +8,13 @@ describe('Unit Tests', () => {
     request = supertest(app);
   });
 
-  it('Service uses the NAME override', async () => {
-    process.env.NAME = 'Cloud';
-    const response = await request.get('/').retry(3).expect(200);
-    assert.equal(response.text, 'Hello Cloud!');
+  it('Gets the leaderboard for a particular level', async () => {
+    const response = await request.get('/leaderboard').retry(3).expect(200);
   });
 
-  it('Service uses the NAME default', async () => {
+  it('Put a new score up', async () => {
     process.env.NAME = '';
-    const response = await request.get('/').retry(3).expect(200);
+    const response = await request.post('/leaderboard').retry(3).expect(200);
     assert.equal(response.text, 'Hello World!');
   });
 });
