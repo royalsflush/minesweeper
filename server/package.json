@@ -25,7 +25,8 @@
   "homepage": "https://github.com/royalsflush/minesweeper#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "knex": "^3.0.0"
+    "knex": "^3.0.0",
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "c8": "^10.0.0",

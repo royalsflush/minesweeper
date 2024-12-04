@@ -19,7 +19,13 @@ describe('Put some scores for easy and read them', () => {
 
 describe('Invalid leaderboard queries', () => {
   it('Tries to get the leaderboard with no difficulty', async() => {
-    return request(app).get('/leaderboard').expect(500);
+    return request(app)
+      .get('/leaderboard')
+      .expect(500)
+      .expect(function(res) {
+        assert.strictEqual(res.body, "Invalid difficulty.");
+        done();
+      });
   });
 
 })

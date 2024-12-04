@@ -37,9 +37,11 @@ const createPool = () => {
 
 const GetScoresForDifficulty = (req, res) => {
     const pool = createPool();
+
+    logger.info(`request: ${req}`);
     const {difficulty} = req.body;
 
-    if (!difficulty || (difficulty == 'easy')) {
+    if (!difficulty || (difficulty != 'easy')) {
         res.status(500).send('Invalid difficulty.').end();
     }
 
