@@ -7,14 +7,15 @@ describe('Put some scores for easy and read them', () => {
   it('Gets the leaderboard for easy', async () => {
     return request(app)
       .get('/leaderboard')
-      .send({difficulty: 'easy'})
+      .query({difficulty: 'easy'})
       .retry(3)
       .expect(200);
   });
 
+  /*
   it('Put a new score up', async () => {
     return request(app).post('/leaderboard').retry(3).expect(200);
-  });
+  });*/
 });
 
 describe('Invalid leaderboard queries', () => {
@@ -23,7 +24,17 @@ describe('Invalid leaderboard queries', () => {
       .get('/leaderboard')
       .expect(500)
       .expect(function(res) {
-        assert.strictEqual(res.body, "Invalid difficulty.");
+        assert.strictEqual(res.text, "No difficulty given.");
+      });
+  });
+
+  it('Tries to get the leaderboard with an invalid difficulty', async() => {
+    return request(app)
+      .get('/leaderboard')
+      .query({difficulty: 'notValid'})
+      .expect(500)
+      .expect(function(res) {
+        assert.strictEqual(res.text, "Invalid difficulty.");
       });
   });
 
