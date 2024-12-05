@@ -24,7 +24,6 @@ describe('Invalid leaderboard queries', () => {
       .expect(500)
       .expect(function(res) {
         assert.strictEqual(res.body, "Invalid difficulty.");
-        done();
       });
   });
 

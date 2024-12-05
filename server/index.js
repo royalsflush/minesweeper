@@ -1,5 +1,6 @@
 import express from 'express';
 import Knex from 'knex';
+import logger from './logging.js';
 
 const app = express();
 
