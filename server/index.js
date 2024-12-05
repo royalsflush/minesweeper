@@ -36,18 +36,25 @@ const createPool = () => {
     return createUnixSocketPool(config);
 }
 
+class ClientError extends Error {
+  constructor(msg, statusCode=400) {
+    super(msg);
+    this.error = msg;
+    this.statusCode = statusCode;
+  }
+}
+
 const GetScoresForDifficulty = (req, res) => {
     const pool = createPool();
-
     logger.info(JSON.stringify(req.query));
+    
     if (!req.query || !req.query.difficulty) {
-      res.status(500).send('No difficulty given.').end();
+      throw new ClientError('No difficulty given.');
     }
     const difficulty = req.query.difficulty.toString();
     
-
     if (difficulty !== 'easy') {
-        res.status(500).send('Invalid difficulty.').end();
+      throw new ClientError('Invalid difficulty.');
     }
 
     res.status(200).send();

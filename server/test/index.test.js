@@ -22,9 +22,9 @@ describe('Invalid leaderboard queries', () => {
   it('Tries to get the leaderboard with no difficulty', async() => {
     return request(app)
       .get('/leaderboard')
-      .expect(500)
+      .expect(400)
       .expect(function(res) {
-        assert.strictEqual(res.text, "No difficulty given.");
+        assert.match(res.text, /No difficulty given./);
       });
   });
 
@@ -32,9 +32,19 @@ describe('Invalid leaderboard queries', () => {
     return request(app)
       .get('/leaderboard')
       .query({difficulty: 'notValid'})
-      .expect(500)
+      .expect(400)
       .expect(function(res) {
-        assert.strictEqual(res.text, "Invalid difficulty.");
+        assert.match(res.text, /Invalid difficulty./);
+      });
+  });
+
+  it('Tries to get the leaderboard with query but no difficulty', async() => {
+    return request(app)
+      .get('/leaderboard')
+      .query({another: 'easy'})
+      .expect(400)
+      .expect(function(res) {
+        assert.match(res.text, /No difficulty given./);
       });
   });
 
